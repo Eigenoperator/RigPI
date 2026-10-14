@@ -1,0 +1,32 @@
+{
+  "simulation": {
+    "steps": 50,
+    "dt": 0.01,
+    "joint_type": "revolute",
+    "friction_normal_force": 50.0,
+    "friction_effective_radius": 0.01,
+    "torque_y_segments": [
+      {"until_step": 15, "value": 0.4},
+      {"until_step": 35, "value": -0.4},
+      {"until_step": 49, "value": 0.4}
+    ],
+    "initial_joint_q": [0.0],
+    "initial_joint_qd": [0.0]
+  },
+  "heldout": {
+    "torque_y_segments": [
+      {"until_step": 12, "value": -0.25},
+      {"until_step": 31, "value": 0.35},
+      {"until_step": 49, "value": -0.15}
+    ],
+    "initial_joint_q": [0.1],
+    "initial_joint_qd": [-0.1]
+  },
+  "ground_truth": {
+    "mass": 1.0,
+    "friction": 0.35
+  },
+  "optimizer": {
+    "max_iter": 100
+  }
+}

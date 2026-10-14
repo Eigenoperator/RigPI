@@ -1,0 +1,59 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rigpi"
+version = "0.1.0"
+description = "VLM-seeded rigid-body parameter identification with differentiable simulation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+authors = [
+    { name = "Xincheng He" },
+    { name = "Rongrong Zhang" },
+    { name = "Wei Jiang" },
+    { name = "Wenqiang Xu" },
+]
+keywords = [
+    "robotics",
+    "differentiable-simulation",
+    "system-identification",
+    "rigid-body-dynamics",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "numpy>=1.26",
+    "torch>=2.2",
+    "warp-lang==1.18.0",
+    "newton==1.6.1",
+]
+
+[project.urls]
+Homepage = "https://sites.google.com/view/rigpi"
+Repository = "https://github.com/Eigenoperator/RigPI"
+Paper = "https://arxiv.org/abs/2606.25212"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "ruff>=0.11",
+]
+viz = ["matplotlib>=3.7"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rigpi"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

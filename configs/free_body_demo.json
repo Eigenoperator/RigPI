@@ -1,0 +1,42 @@
+{
+  "simulation": {
+    "steps": 60,
+    "dt": 0.01,
+    "device": "cpu",
+    "gravity": -9.81,
+    "initial_position": [0.0, 0.0, 0.1],
+    "initial_quaternion_xyzw": [0.0, 0.0, 0.0, 1.0],
+    "initial_linear_velocity": [0.0, 0.0, 0.0],
+    "initial_angular_velocity": [0.0, 0.0, 0.0],
+    "force": {
+      "offset": [5.0, 0.0, 0.0],
+      "amplitude": [2.0, 3.0, 0.2],
+      "angular_frequency": [18.0, 13.0, 8.0]
+    },
+    "torque": {
+      "offset": [0.0, 0.0, 0.0],
+      "amplitude": [0.18, 0.21, 0.24],
+      "angular_frequency": [11.0, 7.0, 9.0],
+      "phase": [0.0, 1.5707963267948966, 0.0]
+    },
+    "application_point": {
+      "offset": [0.0, 0.0, 0.03],
+      "amplitude": [0.01, 0.01, 0.0],
+      "angular_frequency": [5.0, 4.0, 0.0],
+      "phase": [0.0, 1.5707963267948966, 0.0]
+    },
+    "normal_force": 9.81,
+    "contact_point_body": [0.0, 0.0, -0.1]
+  },
+  "ground_truth": {
+    "mass": 1.0,
+    "com": [0.0, 0.0, 0.03],
+    "principal_inertia": [0.025, 0.024, 0.02],
+    "friction": 0.35
+  },
+  "optimizer": {
+    "iterations": 200,
+    "relative_step": 0.01,
+    "penalty_weight": 0.1
+  }
+}

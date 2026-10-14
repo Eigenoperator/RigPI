@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  core-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install core test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+      - name: Compile
+        run: python -m compileall -q src examples tests
+      - name: Lint and formatting
+        run: |
+          ruff check .
+          ruff format --check .
+      - name: Test core and Newton backends
+        run: pytest -q
+      - name: Exercise release examples
+        if: matrix.python-version == '3.11'
+        run: |
+          python examples/featherstone_smoke.py
+          python examples/identify_revolute.py --output outputs/ci_revolute.json --trajectory-output outputs/ci_revolute.npz
+          python examples/identify_revolute.py --trajectory outputs/ci_revolute.npz --output outputs/ci_revolute_measured.json
+          python examples/validate_revolute_box.py --check --output outputs/ci_revolute_box.json
+          python examples/identify_free_body.py --output outputs/ci_free.json --trajectory-output outputs/ci_free.npz
+          python examples/identify_free_body.py --trajectory outputs/ci_free.npz --output outputs/ci_free_measured.json
+      - name: Check release distributions
+        if: matrix.python-version == '3.11'
+        run: |
+          python -m pip install build twine
+          python -m build --sdist --wheel --outdir dist
+          python -m twine check dist/*

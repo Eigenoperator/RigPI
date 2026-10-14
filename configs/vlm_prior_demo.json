@@ -1,0 +1,17 @@
+{
+  "source": "Illustrative VLM output supplied with the release; values are not an actual model prediction.",
+  "initial": {
+    "mass": 0.8,
+    "com": [0.0, 0.0, 0.22],
+    "principal_inertia": [0.018, 0.018, 0.0005],
+    "friction": 0.15
+  },
+  "bounds": {
+    "mass": [0.5, 1.5],
+    "com_lower": [-0.1, -0.1, 0.1],
+    "com_upper": [0.1, 0.1, 0.4],
+    "inertia_lower": [[0.01, -0.005, -0.005], [-0.005, 0.01, -0.005], [-0.005, -0.005, 0.0003]],
+    "inertia_upper": [[0.04, 0.005, 0.005], [0.005, 0.04, 0.005], [0.005, 0.005, 0.001]],
+    "friction": [0.05, 0.8]
+  }
+}
